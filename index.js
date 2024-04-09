@@ -1,11 +1,10 @@
 import cors from 'cors'
 import express from "express"
 const app = express();
-//import pg from 'pg'
+import pg from 'pg'
 import dotenv from 'dotenv'
 dotenv.config()
 
-/*
 const db = new pg.Pool({
     host: process.env.POSTGRES_HOST,
     port: process.env.PORT,
@@ -14,7 +13,6 @@ const db = new pg.Pool({
     database: process.env.POSTGRES_DATABASE,
     connectionString: process.env.POSTGRES_URL ,
 })
-*/
 
 app.use( express.json() )
 
