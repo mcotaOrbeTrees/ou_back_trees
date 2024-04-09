@@ -50,7 +50,7 @@ app.get('/tree/:id', async (req, res) => {
 });
 
 // GET all trees in the "trees" table
-app.get('all_trees', async (req, res) => {
+app.get('/all_trees', async (req, res) => {
     const client = await db.connect();
 
     const result = await client.query(```
