@@ -36,7 +36,7 @@ app.listen(
     }
 )
 
-app.get('/hello/:id', async (req, res) => {
+app.get('/hellos/:id', async (req, res) => {
     const { id } = req.params
     /* const client = await db.connect();
 
