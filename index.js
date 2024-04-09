@@ -47,7 +47,7 @@ app.get('/tree/:id', async (req, res) => {
         trees.push(tree.comb)
     }) */
 
-    res.status(200).json(result)
+    res.status(200).json(result.rows)
 });
 
 /*
