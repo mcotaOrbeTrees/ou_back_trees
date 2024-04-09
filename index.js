@@ -39,11 +39,7 @@ app.get('/tree/:id', async (req, res) => {
     const { id } = req.params
     const client = await db.connect();
 
-    const result = await client.query(```
-        SELECT *
-        FROM trees
-        WHERE tree_id='${id}'
-    ```);
+    const result = await client.query(`SELECT * FROM trees WHERE tree_id='${id}'`);
     client.release()
 
     res.status(200).json(result.rows)
@@ -53,10 +49,7 @@ app.get('/tree/:id', async (req, res) => {
 app.get('/all-trees', async (req, res) => {
     const client = await db.connect();
 
-    const result = await client.query(```
-        SELECT *
-        FROM trees
-    ```);
+    const result = await client.query(`SELECT * FROM trees`);
     client.release()
 
     res.status(200).json(result.rows)
@@ -67,22 +60,7 @@ app.post('/tree', async (req, res) => {
     const { tree } = req.body
     const client = await db.connect();
 
-    const result = await client.query(```
-        insert into trees(
-            tree_id,
-            name,
-            lat,
-            long,
-            reg_date_time
-        )
-        values(
-            uuid_generate_v4(),
-            '${tree.name}',
-            ${tree.lat},
-            ${tree.long},
-            '${tree.reg_date_time}'
-        )
-    ```);
+    const result = await client.query(`INSERT INTO trees(tree_id, name, lat, long, reg_date_time) VALUES(uuid_generate_v4(), '${tree.name}', ${tree.lat}, ${tree.long}, '${tree.reg_date_time}')`);
     client.release()
 
     res.status(200).json(result)
