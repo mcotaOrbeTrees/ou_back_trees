@@ -36,19 +36,20 @@ app.listen(
     }
 )
 
-app.get('/hellos/:id', async (req, res) => {
+app.get('/tree/:id', async (req, res) => {
     const { id } = req.params
-    /* const client = await db.connect();
+    const client = await db.connect();
 
-    const result = await client.query(`SELECT comb FROM royal_tablet WHERE table_id='${table_id}'`);
+    const result = await client.query(`SELECT * FROM trees WHERE tree_id='${id}'`);
     client.release()
 
-    const combs = []
-    result.rows.forEach((comb) => {
-        combs.push(comb.comb)
+    /*
+    const trees = []
+    result.rows.forEach((tree) => {
+        trees.push(tree.comb)
     }) */
 
-    res.status(200).json(id)
+    res.status(200).json(result)
 });
 
 /*
