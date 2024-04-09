@@ -41,13 +41,18 @@ app.get('/tree/:id', async (req, res) => {
     const result = await client.query(`SELECT * FROM trees WHERE tree_id='${id}'`);
     client.release()
 
-    /*
-    const trees = []
-    result.rows.forEach((tree) => {
-        trees.push(tree.comb)
-    }) */
-
     res.status(200).json(result.rows)
+});
+
+
+app.post('/tree', async (req, res) => {
+    const { tree } = req.body
+    /* const client = await db.connect();
+
+    const result = await client.query(`SELECT * FROM trees WHERE tree_id='${id}'`);
+    client.release() */
+
+    res.status(200).json(tree)
 });
 
 /*
