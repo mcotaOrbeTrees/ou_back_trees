@@ -14,6 +14,7 @@ const db = new pg.Pool({
     connectionString: process.env.POSTGRES_URL ,
 })
 
+
 app.use( express.json() )
 
 const options = [
@@ -64,4 +65,29 @@ app.post('/tree', async (req, res) => {
     client.release()
 
     res.status(200).json(result)
+});
+
+// DELETE a tree to the database
+app.delete('/tree/:id', async (req, res) => {
+    const { id } = req.params
+    const client = await db.connect();
+
+    const result = await client.query(`DELETE FROM trees WHERE tree_id='${id}'`);
+    client.release()
+
+    res.status(200).json(result)
+});
+
+// GET the list of all unique names
+app.get('/names-list', async (req, res) => {
+    const client = await db.connect();
+
+    let result = await client.query(`SELECT DISTINCT name FROM trees`);
+    client.release()
+
+    let names = []
+
+    result.rows.map(object => names.push(object.name))
+
+    res.status(200).json(names)
 });
