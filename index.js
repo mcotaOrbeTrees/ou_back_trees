@@ -89,5 +89,5 @@ app.get('/names-list', async (req, res) => {
 
     result.rows.map(object => names.push(object.name))
 
-    res.status(200).json(names)
+    res.status(200).json(names.sort())
 });
